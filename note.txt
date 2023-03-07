@@ -1,0 +1,60 @@
+Tìm hiểu S.O.L.I.D (D = option)
+
+ :	Controller
+		Service
+		Repo <-> DB
+
+IoC/DI
+Repository/DAO
+Authentication and Authorization: 
+	+ Authen: xác định user
+	+ Author: xác minh quyền truy cập
+- Spring frame work: core , boots(life-cycle, key concept)
+
+Spring IoC/DI<>
+IoC Container là thành phần thực hiện IoC.
+Trong Spring, Spring Container (IoC Container) sẽ tạo các đối tượng, lắp rắp chúng lại với nhau, cấu hình các đối tượng và quản lý vòng đời của chúng từ lúc tạo ra cho đến lúc bị hủy.
+Spring container sử dụng DI để quản lý các thành phần, đối tượng để tạo nên 1 ứng dụng. Các thành phần, đối tượng này gọi là Spring Bean (mình sẽ nói về Spring Bean trong các bài sau)
+Để tạo đối tượng, cấu hình, lắp rắp chúng, Spring Container sẽ đọc thông tin từ các file xml và thực thi chúng. 
+IoC Container trong Spring có 2 kiểu là:
+BeanFactory ApplicationContext
+
+
+
+Sự khác nhau giữa BeanFactory và ApplicationContext:
+
+BeanFactory và ApplicationContext đều là các interface thực hiện IoC Container. ApplicationContext được xây dựng BeanFactory nhưng nó có thêm một số chức năng mở rộng như tích hợp với Spring AOP, xử lý message, context cho web application.
+
+
+
+Inversion of Control là gì?
+IoC còn có tên gọi đầy đủ là Inversion of Control, được hiểu là một nguyên lý thiết kế ứng dụng trong công nghệ phần mềm. Kiến trúc phần mềm khi áp dụng nguyên lý thiết kế này sẽ đảo ngược quyền điều khiển so với kiểu lập trình hướng thủ tục. Nếu như trong lập trình hướng thủ tục, các đoạn mã được thêm vào sẽ gọi các thư viện thì ở IoC lại hoàn toàn khác. Những IoC container sẽ chích những dependencies khi khởi tạo bean.
+Dependency Injection là gì?
+Đây là một pattern dùng để implement IoC, các dependencies sẽ được inject vào module trong quá trình khởi tạo. 
+Việc kết nối giữa các đối tượng với các đối tượng khác, hoặc inject các đối tượng vào đối tượng khác được thực hiện bằng quá trình lắp ráp chứ không phải bởi chính các đối tượng.
+
+
+Tomcat đóng vai trò gì trong spring?
+It is the most popular servlet container which was used to deploy java applications, by default spring boot is built the standalone application which was running on the desktop.
+
+Nguyên tắc trách nhiệm đơn lẻ (Single Responsibility Principle)
+Nguyên lý SOLID này cho rằng, mỗi class chỉ nên thực hiện một trách nhiệm duy nhất.
+
+Nguyên tắc đóng mở (The Open-Closed Principle)
+Nguyên tắc đóng mở được dùng để mô tả hoạt động kế thừa của các lớp.
+“hạn chế chỉnh sửa , thay vào đó thì sử dụng lớp kế thừa để bổ sung thông tin, trừ một vài trường hợp cần thiết”
+
+Nguyên tắc phân vùng Liskov (The Liskov Substitution Principle)
+Phân vùng Liskov là một trong những phần quan trọng của nguyên lý SOLID. Nguyên tắc này giúp giải quyết các lỗi thường xảy ra trong lập trình.
+
+ Có một đoạn mã mô tả những loài chim biết bay. Khi gặp một loài chim không biết bay như chim cánh cụt, nó sẽ được gắn với NoFlyException. Tuy nhiên, nếu chim cánh cụt lại tiếp tục xuất hiện ở vòng lặp main, chương trình sẽ tự động quăng Exception. Đó chính là bản chất của nguyên tắc phân vùng.
+
+Để giải quyết điều này, ta cần phải tách lớp chim cánh cụt ra một interface riêng. Nguyên tắc này xuất hiện là để nhắc nhở lập trình viên chú ý đến tính sai phạm của nội dung các đoạn mã lập trình. Nếu không khi để đến lúc hoàn thành mới phát hiện ra lỗi thì sửa lại rất khó khăn và mất thời gian.
+
+Nguyên tắc phân tách giao diện (Interface Segregation Principle)
+Trường hợp thực tế của nguyên tắc này như sau: Bạn sở hữu một trung tâm cung cấp các gói du lịch bao gồm những sản phẩm như: gói 1, gói 2, gói 3… Các khách hàng cùng sử dụng một gói sẽ được cho vào một interface chung. Thời gian ban đầu, bạn thấy cách quản lý này rất hợp lý rồi. Tuy nhiên, bỗng có những khách hàng muốn sử dụng một gói bao gồm một vài dịch vụ trong gói 1 cùng một số dịch vụ khác trong gói 2. Thế là bỗng dưng có những gói mới được phát sinh. Càng ngày có càng nhiều khách hàng yêu cầu gói riêng như vậy. Nếu ta cứ viết chung vào trong interface gói du lịch như vậy thì sẽ phải implement nhiều hàm không cần thiết.
+Ta sẽ giải quyết trường hợp này bằng nguyên tắc phân tách giao diện. Hãy tách các dịch vụ thành các interface cụ thể khác nhau. Khi đó, khách hàng yêu cầu dịch vụ nào, ta gộp dịch vụ đó thành một gói mới cho khách. Nguyên lý SOLID này giúp bạn dễ dàng mở rộng quy mô một cách đơn giản.
+
+Nguyên tắc đảo ngược phụ thuộc (Dependency Inversion Principle)
+Nội dung của nguyên lý SOLID này nói về việc các thành phần cụ thể nên phụ thuộc vào các thành phần trừu tượng. Lý do là vì những thành phần trừu tượng thường ít bị thay đổi. Ngược lại, các thành phần cụ thể tuy khác nhau nhưng luôn mang một đặc tính chung để cấu thành thành phần trừu tượng. Việc giữ tính phụ thuộc này giúp chương trình thích ứng tốt với các biến đổi liên tục.
+
